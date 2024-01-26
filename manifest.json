@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "URL Checker",
+  "version": "1.0",
+  "description": "Check if the entered URL is whitelisted",
+  "permissions": ["storage", "activeTab", "webNavigation"],
+  "action": {
+    "default_icon": {
+      "16": "icon/icon.png",
+      "48": "icon/icon.png",
+      "128": "icon/icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon/icon.png",
+    "48": "icon/icon.png",
+    "128": "icon/icon.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  }
+}
