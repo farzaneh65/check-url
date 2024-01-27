@@ -4,21 +4,30 @@
   "version": "1.0",
   "description": "Check if the entered URL is whitelisted",
   "permissions": ["storage", "activeTab", "webNavigation"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_icon": {
-      "16": "icon/icon.png",
-      "48": "icon/icon.png",
-      "128": "icon/icon.png"
+      "16": "icon/safety.png",
+      "48": "icon/safety.png",
+      "128": "icon/safety.png"
     }
   },
+
   "background": {
     "service_worker": "background.js"
   },
+
   "icons": {
-    "16": "icon/icon.png",
-    "48": "icon/icon.png",
-    "128": "icon/icon.png"
+    "16": "icon/extentionIcon.png",
+    "48": "icon/extentionIcon.png",
+    "128": "icon/extentionIcon.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self';"
   }
