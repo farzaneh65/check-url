@@ -1,3 +1,4 @@
+console.log("Content!!!!!");
 function createWarningBanner() {
   const banner = document.createElement("div");
   banner.innerHTML = `
@@ -15,20 +16,30 @@ function createWarningBanner() {
   banner.style.fontSize = "1.5rem";
   banner.id = "extension-warning-banner";
 
-  document.body.prepend(banner);
+  document.addEventListener("DOMContentLoaded", function () {
+    // Use body as a fallback in case document.body is still null
+    const targetNode = document.body || document.documentElement;
+    targetNode.prepend(banner);
+  });
+
+  //document.body.prepend(banner);
+  //alert("Not Safe!!");
 }
 
 // Listen for messages from the background script
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  console.log("GGGGGG");
+
   if (request.action === "createWarningBanner") {
     createWarningBanner();
+    //sendResponse({ message: "Warning banner created successfully" });
   }
 });
 
-const port = chrome.runtime.connect({ name: "content-script" });
+// const port = chrome.runtime.connect({ name: "content-script" });
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Send a message to the background script through the port
-  port.postMessage({ action: "createWarningBanner" });
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   // Send a message to the background script through the port
+//   port.postMessage({ action: "createWarningBanner" });
+// });

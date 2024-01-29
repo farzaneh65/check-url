@@ -3,31 +3,34 @@
   "name": "URL Checker",
   "version": "1.0",
   "description": "Check if the entered URL is whitelisted",
-  "permissions": ["storage", "activeTab", "webNavigation"],
+  "permissions": ["storage", "activeTab", "webNavigation", "scripting", "tabs"],
   "host_permissions": ["<all_urls>"],
+
   "action": {
     "default_icon": {
-      "16": "icon/safety.png",
-      "48": "icon/safety.png",
-      "128": "icon/safety.png"
+      "16": "icon/unknownIcon.png",
+      "48": "icon/unknownIcon.png",
+      "128": "icon/unknownIcon.png"
     }
   },
 
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "run_at": "document_start"
+    }
+  ],
 
   "icons": {
     "16": "icon/extentionIcon.png",
     "48": "icon/extentionIcon.png",
     "128": "icon/extentionIcon.png"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ],
+
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self';"
   }
