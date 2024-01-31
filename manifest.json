@@ -31,6 +31,17 @@
     "128": "icon/extentionIcon.png"
   },
 
+  "web_accessible_resources": [
+    {
+      "resources": ["whitelist.txt"],
+      "matches": ["<all_urls>"]
+    },
+    {
+      "resources": ["styles.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self';"
   }
